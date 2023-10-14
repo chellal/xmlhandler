@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<masterM2I>
+    <utilisateurs>
+        <etudiants>
+            <etudiant id="1">
+                <apogee>A010101</apogee>
+                <email>etudiant@ump.ac.ma</email>
+                <motdepasse>etudiant</motdepasse>
+                <nom>NomEtudiant1</nom>
+                <prenom>PrénomEtudiant1</prenom>
+                <semestres>
+                    <semestre num="1">
+                        <modules>
+                            <module id="1">
+<nom>Intelligence Artificielle</nom>
+<noteNormale>14.0</noteNormale>
+<noteRattrapage>15.5</noteRattrapage>
+                            </module>
+                            <module id="2">
+<nom>Bases de Données Avancées</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="3">
+<nom>Cryptographie</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="4">
+<nom>JEE</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="5">
+<nom>Nouvelles Technologies IP</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="6">
+<nom>Anglais scientifique1</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                        </modules>
+                    </semestre>
+                    <semestre num="2">
+                        <modules>
+                            <module id="7">
+<nom>Génie logicielle</nom>
+<noteNormale>14.0</noteNormale>
+<noteRattrapage>12.0</noteRattrapage>
+                            </module>
+                            <module id="8">
+<nom>Moteurs de Recherche</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="9">
+<nom>Datawarehouse</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="10">
+<nom>Datamining</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="11">
+<nom>Conceptions et Applications Réparties</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="12">
+<nom>Anglais scientifique 2</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                        </modules>
+                    </semestre>
+                </semestres>
+            </etudiant>
+            <etudiant id="2">
+                <apogee>A020202</apogee>
+                <email>etudiant2@ump.ac.ma</email>
+                <motdepasse>etudiant2</motdepasse>
+                <nom>NomEtudiant2</nom>
+                <prenom>PrénomEtudiant2</prenom>
+                <semestres>
+                    <semestre num="1">
+                        <modules>
+                            <module id="1">
+<nom>Intelligence Artificielle</nom>
+<noteNormale>14.0</noteNormale>
+<noteRattrapage>12.0</noteRattrapage>
+                            </module>
+                            <module id="2">
+<nom>Bases de Données Avancées</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="3">
+<nom>Cryptographie</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="4">
+<nom>JEE</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="5">
+<nom>Nouvelles Technologies IP</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="6">
+<nom>Anglais scientifique1</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                        </modules>
+                    </semestre>
+                    <semestre num="2">
+                        <modules>
+                            <module id="7">
+<nom>Génie logicielle</nom>
+<noteNormale>14.0</noteNormale>
+<noteRattrapage>12.0</noteRattrapage>
+                            </module>
+                            <module id="8">
+<nom>Moteurs de Recherche</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="9">
+<nom>Datawarehouse</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="10">
+<nom>Datamining</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="11">
+<nom>Conceptions et Applications Réparties</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="12">
+<nom>Anglais scientifique 2</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                        </modules>
+                    </semestre>
+                </semestres>
+            </etudiant>
+            <etudiant id="3">
+                <apogee>A030303</apogee>
+                <email>etudiant3@ump.ac.ma</email>
+                <motdepasse>etudiant3</motdepasse>
+                <nom>NomEtudiant3</nom>
+                <prenom>PrénomEtudiant3</prenom>
+                <semestres>
+                    <semestre num="1">
+                        <modules>
+                            <module id="1">
+<nom>Intelligence Artificielle</nom>
+<noteNormale>14.0</noteNormale>
+<noteRattrapage>12.0</noteRattrapage>
+                            </module>
+                            <module id="2">
+<nom>Bases de Données Avancées</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="3">
+<nom>Cryptographie</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="4">
+<nom>JEE</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="5">
+<nom>Nouvelles Technologies IP</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                            <module id="6">
+<nom>Anglais scientifique1</nom>
+<noteNormale>-1.0</noteNormale>
+<noteRattrapage>10.0</noteRattrapage>
+                            </module>
+                        </modules>
+                    </semestre>
+                </semestres>
+            </etudiant>
+        </etudiants>
+    </utilisateurs>
+</masterM2I>

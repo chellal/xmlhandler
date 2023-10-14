@@ -1,0 +1,11 @@
+<nav th:fragment="menu" class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" th:href="@{all}">Liste des étudiants</a>
+        <a class="nav-link active" aria-current="page" th:href="@{etudiantssemestre}">Par semestre</a>
+        <a class="nav-link" th:href="@{etudiantsmodule}">Par Module</a>
+      </div>
+    </div>
+  </div>
+</nav>
