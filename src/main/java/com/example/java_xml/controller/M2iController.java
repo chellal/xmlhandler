@@ -2,6 +2,7 @@ package com.example.java_xml.controller;
 
 
 import com.example.java_xml.metier.Metier;
+import com.example.java_xml.model.Administrateur;
 import com.example.java_xml.model.Etudiant;
 import com.example.java_xml.model.Module;
 import org.springframework.stereotype.Controller;
@@ -17,25 +18,24 @@ import java.util.stream.Collectors;
 @Controller
 public class M2iController {
     @PostMapping(path = "/login")
-    public String test(Model model, @RequestParam("username") String login, @RequestParam("password") String pass) {
+    public String test(Model model, @RequestParam("username") String login, @RequestParam("password") String pass) throws JAXBException {
         Etudiant etudiant = null;
+        Administrateur administrateur = Metier.loginAdmin(login,pass);
         String render = "";
-        try {
-            etudiant = Metier.loginEtudiant(login, pass);
-            System.out.println(etudiant);
-            if (etudiant==null) {
-                // Handle failed login (for example, redirect back to login with an error message)
+        etudiant = Metier.loginEtudiant(login, pass);
+        System.out.println(etudiant);
+        if (etudiant==null) {
+            if(administrateur==null){
                 model.addAttribute("error", "Invalid credentials. Please try again.");
                 render = "index";
             }else {
-                model.addAttribute("etudiant", etudiant);
-                render = "profil";
+                render = "redirect:/all";
             }
-        } catch (JAXBException e) {
-            throw new RuntimeException(e);
-        } finally {
-            return render;
+        }else {
+            model.addAttribute("etudiant", etudiant);
+            render = "profil";
         }
+        return render;
     }
 
     @GetMapping(path = "/")

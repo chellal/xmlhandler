@@ -1,7 +1,6 @@
 package com.example.java_xml.metier;
 
 
-
 import com.example.java_xml.model.*;
 
 import javax.xml.bind.JAXBContext;
@@ -42,14 +41,16 @@ public class Metier {
                 .collect(Collectors.toList());
         return etudiantFiltre;
     }
+
     public static List<Etudiant> getEtudiantByModule(int id) throws JAXBException {
         List<Etudiant> etudiantFiltre = getAllEtudiants().stream()
                 .filter(etudiant -> etudiant.getSemestres().stream()
-                        .anyMatch(semestre -> semestre.getModules().stream().anyMatch(module -> module.getId()== id) ))
+                        .anyMatch(semestre -> semestre.getModules().stream().anyMatch(module -> module.getId() == id)))
                 .collect(Collectors.toList());
         return etudiantFiltre;
     }
-    public static List<Module> getAllModules() throws JAXBException{
+
+    public static List<Module> getAllModules() throws JAXBException {
         List<Etudiant> etudiants = getAllEtudiants();
 
         List<Module> modules = etudiants.stream()
@@ -64,12 +65,25 @@ public class Metier {
                 .collect(Collectors.toList());
         return modules;
     }
-    public static Etudiant loginEtudiant(String apogee,String motDePasse) throws JAXBException {
+
+    public static Etudiant loginEtudiant(String apogee, String motDePasse) throws JAXBException {
         Etudiant etudiant = getAllEtudiants().stream()
-                .filter(etud -> etud.getApogee().equals(apogee)&&etud.getMotdepasse().equals(motDePasse))
+                .filter(etud -> etud.getApogee().equals(apogee) && etud.getMotdepasse().equals(motDePasse))
                 .findFirst()
                 .orElse(null);
         return etudiant;
+    }
+
+    public static Administrateur loginAdmin(String email, String motDePasse) throws JAXBException {
+        MasterM2I masterM2I = connexionXmlFile("data/database.xml");
+        Administrateur administrateur = masterM2I.getUtilisateurs().getAdministrateur();
+        System.out.println(administrateur);
+        if (administrateur != null) {
+            if ((administrateur.getEmail().equals(email)) && (administrateur.getMotdepasse().equals(motDePasse))) {
+                return administrateur;
+            }
+        }
+        return null;
     }
 
     public static Etudiant addEtudiant(Etudiant etudiant) {
