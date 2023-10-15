@@ -8,6 +8,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
@@ -33,7 +34,6 @@ public class Metier {
                 .orElse(null);
         return etudiant;
     }
-
     public static List<Etudiant> getEtudiantBySemestre(int num) throws JAXBException {
         List<Etudiant> etudiantFiltre = getAllEtudiants().stream()
                 .filter(etudiant -> etudiant.getSemestres().stream()
@@ -175,6 +175,30 @@ public class Metier {
         } else {
             System.out.println("Aucun étudiant trouvé avec l'apogée spécifié.");
         }
+    }
+
+    public static ModuleXml moduleXml(int id) throws JAXBException{
+        Module module = getAllModules().stream()
+                .filter(module1 -> module1.getId() == id)
+                .findFirst()
+                .orElse(null);
+        ModuleXml moduleXmlResult = new ModuleXml();
+        moduleXmlResult.setId(module.getId());
+        moduleXmlResult.setNom(module.getNom());
+        List<Etudiant> etudiants = getEtudiantByModule(id);
+        List<EtudiantXml> etudiantToAdd = new ArrayList<>();
+        etudiants.forEach(etudiant -> {
+            EtudiantXml etudiantXml = new EtudiantXml();
+            etudiantXml.setApogee(etudiant.getApogee());
+            etudiantXml.setId(etudiant.getId());
+            etudiantXml.setNom(etudiant.getNom());
+            etudiantXml.setPrenom(etudiant.getPrenom());
+            etudiantXml.setEmail(etudiant.getEmail());
+            etudiantXml.setApogee(etudiant.getApogee());
+            etudiantToAdd.add(etudiantXml);
+        });
+        moduleXmlResult.setEtudiants(etudiantToAdd);
+        return moduleXmlResult;
     }
 
     private static void saveEtudiantsToXml(List<Etudiant> etudiants, String fileName) {

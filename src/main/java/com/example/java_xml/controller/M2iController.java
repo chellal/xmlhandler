@@ -5,13 +5,21 @@ import com.example.java_xml.metier.Metier;
 import com.example.java_xml.model.Administrateur;
 import com.example.java_xml.model.Etudiant;
 import com.example.java_xml.model.Module;
+import com.example.java_xml.model.ModuleXml;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.HttpHeaders;
 
+
+import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import java.io.StringWriter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,18 +28,18 @@ public class M2iController {
     @PostMapping(path = "/login")
     public String test(Model model, @RequestParam("username") String login, @RequestParam("password") String pass) throws JAXBException {
         Etudiant etudiant = null;
-        Administrateur administrateur = Metier.loginAdmin(login,pass);
+        Administrateur administrateur = Metier.loginAdmin(login, pass);
         String render = "";
         etudiant = Metier.loginEtudiant(login, pass);
         System.out.println(etudiant);
-        if (etudiant==null) {
-            if(administrateur==null){
+        if (etudiant == null) {
+            if (administrateur == null) {
                 model.addAttribute("error", "Invalid credentials. Please try again.");
                 render = "index";
-            }else {
+            } else {
                 render = "redirect:/all";
             }
-        }else {
+        } else {
             model.addAttribute("etudiant", etudiant);
             render = "profil";
         }
@@ -119,5 +127,23 @@ public class M2iController {
         }
     }
 
+    @GetMapping(value = "/xmlmodule", produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<String> xmlResponse(@RequestParam(name = "id", defaultValue = "1") String moduleId, Model model) throws JAXBException {
+        int id = Integer.parseInt(moduleId);
+        ModuleXml moduleXml = Metier.moduleXml(id);
+        StringWriter stringWriter = new StringWriter();
+        JAXBContext context = JAXBContext.newInstance(ModuleXml.class);
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        marshaller.marshal(moduleXml, stringWriter);
 
+        // Set the response headers to trigger download
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=module.xml");
+
+        // Return XML content as a downloadable file
+        return ResponseEntity.ok()
+                .headers(headers)
+                .body(stringWriter.toString());
+    }
 }
