@@ -2,10 +2,9 @@ package com.example.java_xml.controller;
 
 
 import com.example.java_xml.metier.Metier;
-import com.example.java_xml.model.Administrateur;
-import com.example.java_xml.model.Etudiant;
-import com.example.java_xml.model.Module;
-import com.example.java_xml.model.ModuleXml;
+import com.example.java_xml.model.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -130,20 +129,36 @@ public class M2iController {
     @GetMapping(value = "/xmlmodule", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> xmlResponse(@RequestParam(name = "id", defaultValue = "1") String moduleId, Model model) throws JAXBException {
         int id = Integer.parseInt(moduleId);
-        ModuleXml moduleXml = Metier.moduleXml(id);
+        ModuleXml moduleXml = Metier.moduleXmlExport(id);
         StringWriter stringWriter = new StringWriter();
         JAXBContext context = JAXBContext.newInstance(ModuleXml.class);
         Marshaller marshaller = context.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(moduleXml, stringWriter);
-
         // Set the response headers to trigger download
         HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=module.xml");
-
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=module_"+id+".xml");
         // Return XML content as a downloadable file
         return ResponseEntity.ok()
                 .headers(headers)
                 .body(stringWriter.toString());
     }
+    @GetMapping(value = "/jsonsemestre", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> jsonResponse(@RequestParam(name = "id", defaultValue = "1") String semestreId, Model model) throws JAXBException, JsonProcessingException {
+            int id = Integer.parseInt(semestreId);
+            SemestreXml semestreXml = Metier.semestreJsonExport(id);
+
+            // Serialize the SemestreXml object to JSON using Jackson ObjectMapper
+            ObjectMapper objectMapper = new ObjectMapper();
+            String json = objectMapper.writeValueAsString(semestreXml);
+
+            // Set the response headers to trigger download
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=semestre_" + id + ".json");
+
+            // Return JSON content as a downloadable file
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .body(json);
+        }
 }

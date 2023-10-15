@@ -177,7 +177,7 @@ public class Metier {
         }
     }
 
-    public static ModuleXml moduleXml(int id) throws JAXBException{
+    public static ModuleXml moduleXmlExport(int id) throws JAXBException{
         Module module = getAllModules().stream()
                 .filter(module1 -> module1.getId() == id)
                 .findFirst()
@@ -199,6 +199,25 @@ public class Metier {
         });
         moduleXmlResult.setEtudiants(etudiantToAdd);
         return moduleXmlResult;
+    }
+
+    public static SemestreXml semestreJsonExport(int num) throws JAXBException{
+        SemestreXml semestreXml  = new SemestreXml();
+        semestreXml.setNum(num);
+        List<Etudiant> etudiants = getEtudiantBySemestre(num);
+        List<EtudiantXml> etudiantToAdd = new ArrayList<>();
+        etudiants.forEach(etudiant -> {
+            EtudiantXml etudiantXml = new EtudiantXml();
+            etudiantXml.setApogee(etudiant.getApogee());
+            etudiantXml.setId(etudiant.getId());
+            etudiantXml.setNom(etudiant.getNom());
+            etudiantXml.setPrenom(etudiant.getPrenom());
+            etudiantXml.setEmail(etudiant.getEmail());
+            etudiantXml.setApogee(etudiant.getApogee());
+            etudiantToAdd.add(etudiantXml);
+        });
+        semestreXml.setEtudiants(etudiantToAdd);
+        return semestreXml;
     }
 
     private static void saveEtudiantsToXml(List<Etudiant> etudiants, String fileName) {

@@ -1,5 +1,7 @@
 package com.example.java_xml.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
@@ -11,6 +13,7 @@ public class EtudiantXml {
     private String nom;
     private String prenom;
     private String email;
+    @JsonIgnore
     private String motdepasse;
 
 
