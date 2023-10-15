@@ -143,6 +143,30 @@ public class M2iController {
                 .headers(headers)
                 .body(stringWriter.toString());
     }
+
+    @GetMapping(value = "/xmlreleve", produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<String> xmlResponse(@RequestParam(name = "id", defaultValue = "1") int semestreId,@RequestParam(name = "etuid", defaultValue = "1") int etudID, Model model) throws JAXBException {
+        List<Etudiant> etudiants = Metier.getEtudiantBySemestre(semestreId);
+        Etudiant etudiant = etudiants.stream()
+                .filter(etudiant1 -> etudiant1.getId()==etudID)
+                .findFirst()
+                .orElse(null);
+        etudiant.setSemestres(etudiant.getSemestres().stream()
+                .filter(semestre -> semestre.getNum()==semestreId)
+                .collect(Collectors.toList()));
+        StringWriter stringWriter = new StringWriter();
+        JAXBContext context = JAXBContext.newInstance(Etudiant.class);
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        marshaller.marshal(etudiant, stringWriter);
+        // Set the response headers to trigger download
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=releve_S_"+semestreId+"_"+etudiant.getNom()+".xml");
+        // Return XML content as a downloadable file
+        return ResponseEntity.ok()
+                .headers(headers)
+                .body(stringWriter.toString());
+    }
     @GetMapping(value = "/jsonsemestre", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> jsonResponse(@RequestParam(name = "id", defaultValue = "1") String semestreId, Model model) throws JAXBException, JsonProcessingException {
             int id = Integer.parseInt(semestreId);

@@ -41,8 +41,11 @@
                 </tr>
                 </tbody>
             </table>
+            <a class="btn btn-primary" th:href="@{xmlreleve(id=${semestre.getNum()},etuid=${etudiant.getId()})}">Exporter
+                le releve de la semestre </a>
+
         </div>
-        <button class="btn btn-primary mb-5" th:href="@{all}">Retour</button>
+        <button class="btn btn-primary mb-5 mt-4" th:href="@{all}">Retour</button>
     </div>
 </div>
 </body>
