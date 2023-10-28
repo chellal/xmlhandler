@@ -7,14 +7,17 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpHeaders;
 
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -24,30 +27,55 @@ import java.util.stream.Collectors;
 
 @Controller
 public class M2iController {
-    @PostMapping(path = "/login")
-    public String test(Model model, @RequestParam("username") String login, @RequestParam("password") String pass) throws JAXBException {
-        Etudiant etudiant = null;
-        Administrateur administrateur = Metier.loginAdmin(login, pass);
-        String render = "";
-        etudiant = Metier.loginEtudiant(login, pass);
-        System.out.println(etudiant);
-        if (etudiant == null) {
-            if (administrateur == null) {
-                model.addAttribute("error", "Invalid credentials. Please try again.");
-                render = "index";
-            } else {
-                render = "redirect:/all";
-            }
-        } else {
-            model.addAttribute("etudiant", etudiant);
-            render = "profil";
+//        @PostMapping(path = "/login")
+//    public String test(Model model, @RequestParam("username") String login, @RequestParam("password") String pass) throws JAXBException {
+//        Etudiant etudiant = null;
+//        Administrateur administrateur = Metier.loginAdmin(login, pass);
+//        String render = "";
+//        etudiant = Metier.loginEtudiant(login, pass);
+//        System.out.println(etudiant);
+//        if (etudiant == null) {
+//            if (administrateur == null) {
+//                model.addAttribute("error", "Invalid credentials. Please try again.");
+//                render = "index";
+//            } else {
+//                render = "redirect:/all";
+//            }
+//        } else {
+//            model.addAttribute("etudiant", etudiant);
+//            render = "profil";
+//        }
+//        return render;
+//    }
+
+//
+    @GetMapping(path = "/login")
+    public String login(){
+        return "index";
+    }
+
+
+    @RequestMapping(value = {"/logout"}, method = RequestMethod.POST)
+    public String logoutDo(Model model,HttpServletRequest request, HttpServletResponse response){
+        HttpSession session= request.getSession(false);
+        SecurityContextHolder.clearContext();
+        session= request.getSession(false);
+        if(session != null) {
+            session.invalidate();
         }
-        return render;
+        return "index";
     }
 
     @GetMapping(path = "/")
-    public String accueil(Model model) {
-        return ("index");
+    public String accueil(Model model, Authentication authentication) throws JAXBException {
+        boolean userRoleEtudiant = authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_etudiant"));
+        if (userRoleEtudiant) {
+            Etudiant etudiant = Metier.getEtudiantByApogee(authentication.getName());
+            model.addAttribute("etudiant", etudiant);
+            return "profil";
+        }
+        return ("redirect:all");
     }
 
     @GetMapping(path = "/all")
@@ -137,7 +165,7 @@ public class M2iController {
         marshaller.marshal(moduleXml, stringWriter);
         // Set the response headers to trigger download
         HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=module_"+id+".xml");
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=module_" + id + ".xml");
         // Return XML content as a downloadable file
         return ResponseEntity.ok()
                 .headers(headers)
@@ -145,14 +173,14 @@ public class M2iController {
     }
 
     @GetMapping(value = "/xmlreleve", produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<String> xmlResponse(@RequestParam(name = "id", defaultValue = "1") int semestreId,@RequestParam(name = "etuid", defaultValue = "1") int etudID, Model model) throws JAXBException {
+    public ResponseEntity<String> xmlResponse(@RequestParam(name = "id", defaultValue = "1") int semestreId, @RequestParam(name = "etuid", defaultValue = "1") int etudID, Model model) throws JAXBException {
         List<Etudiant> etudiants = Metier.getEtudiantBySemestre(semestreId);
         Etudiant etudiant = etudiants.stream()
-                .filter(etudiant1 -> etudiant1.getId()==etudID)
+                .filter(etudiant1 -> etudiant1.getId() == etudID)
                 .findFirst()
                 .orElse(null);
         etudiant.setSemestres(etudiant.getSemestres().stream()
-                .filter(semestre -> semestre.getNum()==semestreId)
+                .filter(semestre -> semestre.getNum() == semestreId)
                 .collect(Collectors.toList()));
         StringWriter stringWriter = new StringWriter();
         JAXBContext context = JAXBContext.newInstance(Etudiant.class);
@@ -161,28 +189,29 @@ public class M2iController {
         marshaller.marshal(etudiant, stringWriter);
         // Set the response headers to trigger download
         HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=releve_S_"+semestreId+"_"+etudiant.getNom()+".xml");
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=releve_S_" + semestreId + "_" + etudiant.getNom() + ".xml");
         // Return XML content as a downloadable file
         return ResponseEntity.ok()
                 .headers(headers)
                 .body(stringWriter.toString());
     }
+
     @GetMapping(value = "/jsonsemestre", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> jsonResponse(@RequestParam(name = "id", defaultValue = "1") String semestreId, Model model) throws JAXBException, JsonProcessingException {
-            int id = Integer.parseInt(semestreId);
-            SemestreXml semestreXml = Metier.semestreJsonExport(id);
+        int id = Integer.parseInt(semestreId);
+        SemestreXml semestreXml = Metier.semestreJsonExport(id);
 
-            // Serialize the SemestreXml object to JSON using Jackson ObjectMapper
-            ObjectMapper objectMapper = new ObjectMapper();
-            String json = objectMapper.writeValueAsString(semestreXml);
+        // Serialize the SemestreXml object to JSON using Jackson ObjectMapper
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(semestreXml);
 
-            // Set the response headers to trigger download
-            HttpHeaders headers = new HttpHeaders();
-            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=semestre_" + id + ".json");
+        // Set the response headers to trigger download
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=semestre_" + id + ".json");
 
-            // Return JSON content as a downloadable file
-            return ResponseEntity.ok()
-                    .headers(headers)
-                    .body(json);
-        }
+        // Return JSON content as a downloadable file
+        return ResponseEntity.ok()
+                .headers(headers)
+                .body(json);
+    }
 }

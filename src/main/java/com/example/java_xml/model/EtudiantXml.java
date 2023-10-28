@@ -13,6 +13,8 @@ public class EtudiantXml {
     private String nom;
     private String prenom;
     private String email;
+    private Double noteNormale;
+    private Double noteRatrappage;
     @JsonIgnore
     private String motdepasse;
 
@@ -69,6 +71,22 @@ public class EtudiantXml {
 
     public void setMotdepasse(String motdepasse) {
         this.motdepasse = motdepasse;
+    }
+    @XmlElement
+    public Double getNoteNormale() {
+        return noteNormale;
+    }
+
+    public void setNoteNormale(Double noteNormale) {
+        this.noteNormale = noteNormale;
+    }
+    @XmlElement
+    public Double getNoteRatrappage() {
+        return noteRatrappage;
+    }
+
+    public void setNoteRatrappage(Double noteRatrappage) {
+        this.noteRatrappage = noteRatrappage;
     }
 
     @Override

@@ -53,7 +53,7 @@
                             <module id="8">
                                 <nom>Moteurs de Recherche</nom>
                                 <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteRattrapage>15</noteRattrapage>
                             </module>
                             <module id="9">
                                 <nom>Datawarehouse</nom>
@@ -62,18 +62,18 @@
                             </module>
                             <module id="10">
                                 <nom>Datamining</nom>
-                                <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteNormale>9</noteNormale>
+                                <noteRattrapage>14</noteRattrapage>
                             </module>
                             <module id="11">
                                 <nom>Conceptions et Applications Réparties</nom>
-                                <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteNormale>15</noteNormale>
+                                <noteRattrapage>-1</noteRattrapage>
                             </module>
                             <module id="12">
                                 <nom>Anglais scientifique 2</nom>
-                                <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteNormale>16</noteNormale>
+                                <noteRattrapage>-1</noteRattrapage>
                             </module>
                         </modules>
                     </semestre>
@@ -91,33 +91,33 @@
                         <modules>
                             <module id="1">
                                 <nom>Intelligence Artificielle</nom>
-                                <noteNormale>14</noteNormale>
-                                <noteRattrapage>12</noteRattrapage>
+                                <noteNormale>15</noteNormale>
+                                <noteRattrapage>-1</noteRattrapage>
                             </module>
                             <module id="2">
                                 <nom>Bases de Données Avancées</nom>
                                 <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteRattrapage>17</noteRattrapage>
                             </module>
                             <module id="3">
                                 <nom>Cryptographie</nom>
                                 <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteRattrapage>14</noteRattrapage>
                             </module>
                             <module id="4">
                                 <nom>JEE</nom>
                                 <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteRattrapage>16</noteRattrapage>
                             </module>
                             <module id="5">
                                 <nom>Nouvelles Technologies IP</nom>
                                 <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteRattrapage>19</noteRattrapage>
                             </module>
                             <module id="6">
                                 <nom>Anglais scientifique1</nom>
                                 <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteRattrapage>11</noteRattrapage>
                             </module>
                         </modules>
                     </semestre>
@@ -125,8 +125,8 @@
                         <modules>
                             <module id="7">
                                 <nom>Génie logicielle</nom>
-                                <noteNormale>14</noteNormale>
-                                <noteRattrapage>12</noteRattrapage>
+                                <noteNormale>17</noteNormale>
+                                <noteRattrapage>-1</noteRattrapage>
                             </module>
                             <module id="8">
                                 <nom>Moteurs de Recherche</nom>
@@ -141,17 +141,17 @@
                             <module id="10">
                                 <nom>Datamining</nom>
                                 <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteRattrapage>15.5</noteRattrapage>
                             </module>
                             <module id="11">
                                 <nom>Conceptions et Applications Réparties</nom>
                                 <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteRattrapage>12.5</noteRattrapage>
                             </module>
                             <module id="12">
                                 <nom>Anglais scientifique 2</nom>
                                 <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteRattrapage>18</noteRattrapage>
                             </module>
                         </modules>
                     </semestre>

@@ -26,6 +26,15 @@ public class Metier {
 
         return etudiants;
     }
+    public static Administrateur getAllAdmin() throws JAXBException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(MasterM2I.class);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+
+        MasterM2I masterM2I = connexionXmlFile("data/database.xml");
+        Administrateur administrateur = masterM2I.getUtilisateurs().getAdministrateur();
+
+        return administrateur;
+    }
 
     public static Etudiant getEtudiantByApogee(String apogee) throws JAXBException {
         Etudiant etudiant = getAllEtudiants().stream()
@@ -66,25 +75,7 @@ public class Metier {
         return modules;
     }
 
-    public static Etudiant loginEtudiant(String apogee, String motDePasse) throws JAXBException {
-        Etudiant etudiant = getAllEtudiants().stream()
-                .filter(etud -> etud.getApogee().equals(apogee) && etud.getMotdepasse().equals(motDePasse))
-                .findFirst()
-                .orElse(null);
-        return etudiant;
-    }
 
-    public static Administrateur loginAdmin(String email, String motDePasse) throws JAXBException {
-        MasterM2I masterM2I = connexionXmlFile("data/database.xml");
-        Administrateur administrateur = masterM2I.getUtilisateurs().getAdministrateur();
-        System.out.println(administrateur);
-        if (administrateur != null) {
-            if ((administrateur.getEmail().equals(email)) && (administrateur.getMotdepasse().equals(motDePasse))) {
-                return administrateur;
-            }
-        }
-        return null;
-    }
 
     public static Etudiant addEtudiant(Etudiant etudiant) {
         try {
@@ -187,7 +178,7 @@ public class Metier {
         moduleXmlResult.setNom(module.getNom());
         List<Etudiant> etudiants = getEtudiantByModule(id);
         List<EtudiantXml> etudiantToAdd = new ArrayList<>();
-        etudiants.forEach(etudiant -> {
+        for (Etudiant etudiant : etudiants) {
             EtudiantXml etudiantXml = new EtudiantXml();
             etudiantXml.setApogee(etudiant.getApogee());
             etudiantXml.setId(etudiant.getId());
@@ -195,8 +186,10 @@ public class Metier {
             etudiantXml.setPrenom(etudiant.getPrenom());
             etudiantXml.setEmail(etudiant.getEmail());
             etudiantXml.setApogee(etudiant.getApogee());
+            etudiantXml.setNoteNormale(getNoteNormaleByModule(etudiant.getApogee(), id));
+            etudiantXml.setNoteRatrappage(getNoteRattrapageByModule(etudiant.getApogee(), id));
             etudiantToAdd.add(etudiantXml);
-        });
+        }
         moduleXmlResult.setEtudiants(etudiantToAdd);
         return moduleXmlResult;
     }
@@ -220,6 +213,54 @@ public class Metier {
         return semestreXml;
     }
 
+    public static Double getNoteNormaleByModule(String apogee, int moduleId) throws JAXBException {
+        List<Etudiant> etudiants = getAllEtudiants();
+        // Trouver l'étudiant par son apogee
+        Etudiant targetEtudiant = etudiants.stream()
+                .filter(etudiant -> etudiant.getApogee().equals(apogee))
+                .findFirst()
+                .orElse(null);
+        // Si l'étudiant avec l'apogee spécifié est trouvé, mettre à jour les notes du module spécifié
+        if (targetEtudiant != null) {
+            // Trouver le module par son ID
+            Module targetModule = targetEtudiant.getSemestres().stream()
+                    .flatMap(semestre -> semestre.getModules().stream())
+                    .filter(module -> module.getId() == moduleId)
+                    .findFirst()
+                    .orElse(null);
+
+            if (targetModule != null) {
+                return targetModule.getNoteNormale();
+
+            }
+        }
+        return null;
+    }
+
+    public static Double getNoteRattrapageByModule(String apogee, int moduleId) throws JAXBException {
+        List<Etudiant> etudiants = getAllEtudiants();
+        // Trouver l'étudiant par son apogee
+        Etudiant targetEtudiant = etudiants.stream()
+                .filter(etudiant -> etudiant.getApogee().equals(apogee))
+                .findFirst()
+                .orElse(null);
+        // Si l'étudiant avec l'apogee spécifié est trouvé, mettre à jour les notes du module spécifié
+        if (targetEtudiant != null) {
+            // Trouver le module par son ID
+            Module targetModule = targetEtudiant.getSemestres().stream()
+                    .flatMap(semestre -> semestre.getModules().stream())
+                    .filter(module -> module.getId() == moduleId)
+                    .findFirst()
+                    .orElse(null);
+
+            if (targetModule != null) {
+                return targetModule.getNoteRattrapage();
+
+            }
+        }
+        return null;
+    }
+
     private static void saveEtudiantsToXml(List<Etudiant> etudiants, String fileName) {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(MasterM2I.class);
@@ -238,6 +279,7 @@ public class Metier {
             e.printStackTrace();
         }
     }
+
 
     private static MasterM2I connexionXmlFile(String file) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(MasterM2I.class);
