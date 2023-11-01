@@ -4,16 +4,16 @@
         <etudiants>
             <etudiant id="1">
                 <apogee>A010101</apogee>
-                <nom>NomEtudiant1</nom>
-                <prenom>PrénomEtudiant1</prenom>
-                <email>etudiant@ump.ac.ma</email>
+                <nom>CHELLAL</nom>
+                <prenom>Mostafa</prenom>
+                <email>chellal.mostafa@ump.ac.ma</email>
                 <motdepasse>etudiant</motdepasse>
                 <semestres>
                     <semestre num="1">
                         <modules>
                             <module id="1">
                                 <nom>Intelligence Artificielle</nom>
-                                <noteNormale>14</noteNormale>
+                                <noteNormale>8</noteNormale>
                                 <noteRattrapage>12</noteRattrapage>
                             </module>
                             <module id="2">
@@ -23,7 +23,7 @@
                             </module>
                             <module id="3">
                                 <nom>Cryptographie</nom>
-                                <noteNormale>-1</noteNormale>
+                                <noteNormale>5</noteNormale>
                                 <noteRattrapage>10</noteRattrapage>
                             </module>
                             <module id="4">
@@ -33,7 +33,7 @@
                             </module>
                             <module id="5">
                                 <nom>Nouvelles Technologies IP</nom>
-                                <noteNormale>-1</noteNormale>
+                                <noteNormale>8</noteNormale>
                                 <noteRattrapage>10</noteRattrapage>
                             </module>
                             <module id="6">
@@ -47,17 +47,17 @@
                         <modules>
                             <module id="7">
                                 <nom>Génie logicielle</nom>
-                                <noteNormale>14</noteNormale>
+                                <noteNormale>4</noteNormale>
                                 <noteRattrapage>12</noteRattrapage>
                             </module>
                             <module id="8">
                                 <nom>Moteurs de Recherche</nom>
-                                <noteNormale>-1</noteNormale>
+                                <noteNormale>5</noteNormale>
                                 <noteRattrapage>15</noteRattrapage>
                             </module>
                             <module id="9">
                                 <nom>Datawarehouse</nom>
-                                <noteNormale>-1</noteNormale>
+                                <noteNormale>7</noteNormale>
                                 <noteRattrapage>10</noteRattrapage>
                             </module>
                             <module id="10">
@@ -68,12 +68,12 @@
                             <module id="11">
                                 <nom>Conceptions et Applications Réparties</nom>
                                 <noteNormale>15</noteNormale>
-                                <noteRattrapage>-1</noteRattrapage>
+                                <noteRattrapage></noteRattrapage>
                             </module>
                             <module id="12">
                                 <nom>Anglais scientifique 2</nom>
                                 <noteNormale>16</noteNormale>
-                                <noteRattrapage>-1</noteRattrapage>
+                                <noteRattrapage></noteRattrapage>
                             </module>
                         </modules>
                     </semestre>
@@ -82,9 +82,9 @@
 
             <etudiant id="2">
                 <apogee>A020202</apogee>
-                <nom>NomEtudiant2</nom>
-                <prenom>PrénomEtudiant2</prenom>
-                <email>etudiant2@ump.ac.ma</email>
+                <nom>BOUSSETTA</nom>
+                <prenom>Mohammed</prenom>
+                <email>boussetta.mohammed@ump.ac.ma</email>
                 <motdepasse>etudiant2</motdepasse>
                 <semestres>
                     <semestre num="1">
@@ -92,7 +92,7 @@
                             <module id="1">
                                 <nom>Intelligence Artificielle</nom>
                                 <noteNormale>15</noteNormale>
-                                <noteRattrapage>-1</noteRattrapage>
+                                <noteRattrapage></noteRattrapage>
                             </module>
                             <module id="2">
                                 <nom>Bases de Données Avancées</nom>
@@ -130,13 +130,13 @@
                             </module>
                             <module id="8">
                                 <nom>Moteurs de Recherche</nom>
-                                <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteNormale>16</noteNormale>
+                                <noteRattrapage></noteRattrapage>
                             </module>
                             <module id="9">
                                 <nom>Datawarehouse</nom>
-                                <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteNormale>12</noteNormale>
+                                <noteRattrapage></noteRattrapage>
                             </module>
                             <module id="10">
                                 <nom>Datamining</nom>
@@ -145,8 +145,8 @@
                             </module>
                             <module id="11">
                                 <nom>Conceptions et Applications Réparties</nom>
-                                <noteNormale>-1</noteNormale>
-                                <noteRattrapage>12.5</noteRattrapage>
+                                <noteNormale>12.5</noteNormale>
+                                <noteRattrapage></noteRattrapage>
                             </module>
                             <module id="12">
                                 <nom>Anglais scientifique 2</nom>
@@ -159,9 +159,9 @@
             </etudiant>
             <etudiant id="3">
                 <apogee>A030303</apogee>
-                <nom>NomEtudiant3</nom>
-                <prenom>PrénomEtudiant3</prenom>
-                <email>etudiant3@ump.ac.ma</email>
+                <nom>EL HOUZI</nom>
+                <prenom>Ibrahim</prenom>
+                <email>elhouzi.ibrahim@ump.ac.ma</email>
                 <motdepasse>etudiant3</motdepasse>
                 <semestres>
                     <semestre num="1">
@@ -169,12 +169,12 @@
                             <module id="1">
                                 <nom>Intelligence Artificielle</nom>
                                 <noteNormale>14</noteNormale>
-                                <noteRattrapage>12</noteRattrapage>
+                                <noteRattrapage></noteRattrapage>
                             </module>
                             <module id="2">
                                 <nom>Bases de Données Avancées</nom>
-                                <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteNormale>15</noteNormale>
+                                <noteRattrapage></noteRattrapage>
                             </module>
                             <module id="3">
                                 <nom>Cryptographie</nom>
@@ -183,30 +183,174 @@
                             </module>
                             <module id="4">
                                 <nom>JEE</nom>
-                                <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteNormale>13</noteNormale>
+                                <noteRattrapage></noteRattrapage>
                             </module>
                             <module id="5">
                                 <nom>Nouvelles Technologies IP</nom>
                                 <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteRattrapage>14</noteRattrapage>
                             </module>
                             <module id="6">
                                 <nom>Anglais scientifique1</nom>
                                 <noteNormale>-1</noteNormale>
-                                <noteRattrapage>10</noteRattrapage>
+                                <noteRattrapage>11</noteRattrapage>
+                            </module>
+                        </modules>
+                    </semestre>
+                    <semestre num="2">
+                        <modules>
+                            <module id="7">
+                                <nom>Génie logicielle</nom>
+                                <noteNormale>17</noteNormale>
+                                <noteRattrapage>-1</noteRattrapage>
+                            </module>
+                            <module id="8">
+                                <nom>Moteurs de Recherche</nom>
+                                <noteNormale>16</noteNormale>
+                                <noteRattrapage></noteRattrapage>
+                            </module>
+                            <module id="9">
+                                <nom>Datawarehouse</nom>
+                                <noteNormale>12</noteNormale>
+                                <noteRattrapage></noteRattrapage>
+                            </module>
+                            <module id="10">
+                                <nom>Datamining</nom>
+                                <noteNormale>-1</noteNormale>
+                                <noteRattrapage>15.5</noteRattrapage>
+                            </module>
+                            <module id="11">
+                                <nom>Conceptions et Applications Réparties</nom>
+                                <noteNormale>12.5</noteNormale>
+                                <noteRattrapage></noteRattrapage>
+                            </module>
+                            <module id="12">
+                                <nom>Anglais scientifique 2</nom>
+                                <noteNormale>-1</noteNormale>
+                                <noteRattrapage>18</noteRattrapage>
                             </module>
                         </modules>
                     </semestre>
                 </semestres>
             </etudiant>
 
+            <etudiant id="4">
+                <apogee>A040404</apogee>
+                <nom>BOUARGA</nom>
+                <prenom>Zakaria</prenom>
+                <email>bouarga.zakaria@ump.ac.ma</email>
+                <motdepasse>etudiant4</motdepasse>
+                <semestres>
+                    <semestre num="3">
+                        <modules>
+                            <module id="13">
+                                <nom>Algorithmique paralléle et complexité</nom>
+                                <noteNormale>14</noteNormale>
+                                <noteRattrapage></noteRattrapage>
+                            </module>
+                            <module id="14">
+                                <nom>Gestion du projet</nom>
+                                <noteNormale>-1</noteNormale>
+                                <noteRattrapage>10</noteRattrapage>
+                            </module>
+                            <module id="15">
+                                <nom>Services web</nom>
+                                <noteNormale>-1</noteNormale>
+                                <noteRattrapage>12</noteRattrapage>
+                            </module>
+                            <module id="16">
+                                <nom>Traitement d'image</nom>
+                                <noteNormale>-1</noteNormale>
+                                <noteRattrapage>10</noteRattrapage>
+                            </module>
+                            <module id="17">
+                                <nom>Sécurité informatique</nom>
+                                <noteNormale>-1</noteNormale>
+                                <noteRattrapage>10</noteRattrapage>
+                            </module>
+                            <module id="18">
+                                <nom>Traitement linguistique</nom>
+                                <noteNormale>-1</noteNormale>
+                                <noteRattrapage>10</noteRattrapage>
+                            </module>
+                        </modules>
+                    </semestre>
+                    <semestre num="4">
+                        <modules>
+                            <module id="19">
+                                <nom>Projet de fin d'étude</nom>
+                                <noteNormale>15</noteNormale>
+                                <noteRattrapage></noteRattrapage>
+                            </module>
+                        </modules>
+                    </semestre>
+                </semestres>
+            </etudiant>
+            <etudiant id="5">
+                <apogee>A050505</apogee>
+                <nom>CHIKHI</nom>
+                <prenom>Ettayeb</prenom>
+                <email>chikhi.ettayeb@ump.ac.ma</email>
+                <motdepasse>etudiant5</motdepasse>
+                <semestres>
+                    <semestre num="3">
+                        <modules>
+                            <module id="13">
+                                <nom>Algorithmique paralléle et complexité</nom>
+                                <noteNormale>10</noteNormale>
+                                <noteRattrapage></noteRattrapage>
+                            </module>
+                            <module id="14">
+                                <nom>Gestion du projet</nom>
+                                <noteNormale>-1</noteNormale>
+                                <noteRattrapage>12</noteRattrapage>
+                            </module>
+                            <module id="15">
+                                <nom>Services web</nom>
+                                <noteNormale>16</noteNormale>
+                                <noteRattrapage></noteRattrapage>
+                            </module>
+                            <module id="16">
+                                <nom>Traitement d'image</nom>
+                                <noteNormale>14</noteNormale>
+                                <noteRattrapage></noteRattrapage>
+                            </module>
+                            <module id="17">
+                                <nom>Sécurité informatique</nom>
+                                <noteNormale>-1</noteNormale>
+                                <noteRattrapage>12</noteRattrapage>
+                            </module>
+                            <module id="18">
+                                <nom>Traitement linguistique</nom>
+                                <noteNormale>-1</noteNormale>
+                                <noteRattrapage>14</noteRattrapage>
+                            </module>
+                        </modules>
+                    </semestre>
+                    <semestre num="4">
+                        <modules>
+                            <module id="19">
+                                <nom>Projet de fi d'étude</nom>
+                                <noteNormale>15</noteNormale>
+                                <noteRattrapage></noteRattrapage>
+                            </module>
+                        </modules>
+                    </semestre>
+                </semestres>
+            </etudiant>
+
+
+
+
+
+
             <!-- Autres étudiants -->
 
         </etudiants>
         <administrateur id="1">
-            <nom>nomAdmin</nom>
-            <prenom>PrénomAdmin</prenom>
+            <nom>Admin</nom>
+            <prenom>Admin</prenom>
             <email>admin@ump.ac.ma</email>
             <motdepasse>admin</motdepasse>
         </administrateur>
